@@ -1,15 +1,10 @@
 import allure
 from selenium.webdriver import Keys
-from selenium.webdriver.support import expected_conditions as EC
 from locators.order_locators import OrderPageLocators
 from pages.base_page import BasePage
 
 
 class OrderPage(BasePage):
-
-    @allure.step("Открытие страницы заказа")
-    def open(self):
-        self.driver.get("https://qa-scooter.praktikum-services.ru/order")
 
     @allure.step("Клик по логотипу Самоката")
     def click_scooter_logo(self):
@@ -48,5 +43,5 @@ class OrderPage(BasePage):
 
     @allure.step("Подтверждение заказа")
     def confirm_order(self):
-        self.wait.until(EC.element_to_be_clickable(OrderPageLocators.CONFIRM_BUTTON)).click()
+        self.click(OrderPageLocators.CONFIRM_BUTTON)
         return self.get_text(OrderPageLocators.SUCCESS_MODAL)

@@ -1,13 +1,10 @@
 import allure
-from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
+from pages.base_page import BasePage
+from urls import Urls
 
 
 class MainPage(BasePage):
-
-    @allure.step("Открытие главной страницы")
-    def open(self):
-        self.driver.get("https://qa-scooter.praktikum-services.ru/")
 
     @allure.step("Скролл и клик на вопрос")
     def click_question_by_text(self, question_text):
@@ -19,10 +16,11 @@ class MainPage(BasePage):
     def get_answer_text(self):
         return self.get_text(MainPageLocators.ANSWER_PANEL)
 
-    @allure.step("Клик по логотипу Яндекса и переключение на другую вкладку")
+    @allure.step("Клик по логотипу Яндекса")
     def click_yandex_logo(self):
         self.click(MainPageLocators.YANDEX_LOGO)
         self.switch_to_new_tab()
+        self.wait.until(lambda d: d.current_url.startswith(Urls.DZEN_URL))
 
     @allure.step("Клик по верхней кнопке заказа")
     def click_order_button_top(self):

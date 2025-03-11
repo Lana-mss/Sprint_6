@@ -1,7 +1,6 @@
 import allure
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
 from locators.order_locators import OrderPageLocators
 
 
@@ -9,6 +8,10 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
+
+    @allure.step("Открытие страницы {url}")
+    def open_url(self, url):
+        self.driver.get(url)
 
     # Клик по элементу {locator}
     def click(self, locator):
@@ -22,7 +25,7 @@ class BasePage:
     def send_keys(self, locator, text):
         self.wait.until(EC.visibility_of_element_located(locator)).send_keys(text)
 
-    # Переключение на новую вкладку
+    @allure.step("Переключение на другую вкладку")
     def switch_to_new_tab(self):
         self.driver.switch_to.window(self.driver.window_handles[-1])
 
