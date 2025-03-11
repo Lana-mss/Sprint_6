@@ -1,0 +1,30 @@
+# Игнорируем виртуальное окружение
+venv/
+.env
+
+# Игнорируем артефакты тестов
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Игнорируем логи и временные файлы
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Игнорируем зависимости
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Игнорируем кэш pytest
+.cache/
+.pytest_cache/
+
+# Игнорируем настройки IDE
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+Thumbs.db
